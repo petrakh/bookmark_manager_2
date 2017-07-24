@@ -23,3 +23,8 @@ I want to filter the links based on tags
 
 Domain Model
 ---
+
+* Bookmark manager <-- add_link (link, [tag]) --> added_link
+* Bookmark manager <-- add_tag_to_link (link, tag) --> tagged_link
+* Bookmark manager <-- filter_links (tag) --> list of links * with the tag
+* Bookmark manager <-- view_links --> list of all links
