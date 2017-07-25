@@ -1,10 +1,13 @@
-feature 'add addres and title' do
+feature 'Creating links' do
 
-  scenario 'add site address and title to manager' do
+  scenario 'when adding a new link' do
     visit '/links/new'
-    fill_in 'address', with: 'http://makersacademy.co.uk'
-    fill_in 'title', with: 'Makers Academy'
-    click_button 'Submit'
-    expect(page).to have_content('Makers Academy')
+    fill_in 'url', with: 'http://zombo.com/'
+    fill_in 'title', with: 'This is Zombocom'
+    click_button 'Create link'
+    expect(current_path).to eq '/links'
+    within 'ul#links' do
+      expect(page).to have_content('This is Zombocom')
+    end
   end
 end
