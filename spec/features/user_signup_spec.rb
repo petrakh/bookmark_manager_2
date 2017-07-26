@@ -9,9 +9,10 @@ feature 'User signup and registration' do
     expect(User.first.email).to eq('barney@barney.com')
   end
 
-  scenario 'user can register' do
+  scenario 'user cant register if confirmation password doesnt match' do
     expect { password_confirmation_fail }.not_to change(User, :count)
-    expect(current_path).to eq '/links'    
+    expect(current_path).to eq '/users'
     expect(page).not_to have_content 'Welcome, barney@barney.com'
+    expect(page).to have_content 'Password and confirmation password do not match'
   end
 end
