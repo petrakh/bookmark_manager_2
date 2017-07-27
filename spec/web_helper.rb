@@ -15,3 +15,18 @@ def password_confirmation_fail
   fill_in :password_confirmation, with: 'password4321'
   click_button 'Register'
 end
+
+def email_nil
+  visit '/users/new'
+  fill_in :password, with: 'password1234'
+  fill_in :password_confirmation, with: 'password1234'
+  click_button 'Register'
+end
+
+def invalid_email_format
+  visit '/users/new'
+  fill_in :email, with: 'invalid@email'
+  fill_in :password, with: 'password1234'
+  fill_in :password_confirmation, with: 'password1234'
+  click_button 'Register'
+end
