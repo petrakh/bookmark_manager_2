@@ -17,4 +17,31 @@ class BookmarkManager < Sinatra::Base
       erb :'users/new'
     end
   end
+
+  get '/users/recover' do
+    "Please enter your email address"
+    erb :'users/recover'
+  end
+
+  get '/users/recover' do
+    erb :'users/acknowledgement'
+  end
+
+  post '/users/recover' do
+    user = User.first(email: params[:email])
+    if user
+      user.generate_token
+    end
+
+    erb :'users/acknowledgement'
+  end
+
+  get '/users/reset_password' do
+    @user = User.find_by_valid_token(params[:token])
+    if(@user)
+      "Please enter your new password"
+    else
+    "Your token is invalid"
+    end
+  end
 end

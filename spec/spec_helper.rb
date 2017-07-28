@@ -7,6 +7,7 @@ require 'simplecov'
 require 'simplecov-console'
 require 'database_cleaner'
 require_relative 'helpers/session'
+require 'timecop'
 
 RSpec.configure do |config|
 
