@@ -1,5 +1,3 @@
-require 'web_helper'
-
 feature 'User signup and registration' do
 
   scenario 'user can register' do
@@ -10,20 +8,20 @@ feature 'User signup and registration' do
   end
 
   scenario 'user cant register if confirmation password doesnt match' do
-    expect { password_confirmation_fail }.not_to change(User, :count)
+    expect { sign_up(password_confirmation: 'bad_password') }.not_to change(User, :count)
     expect(current_path).to eq '/users'
     expect(page).not_to have_content 'Welcome, barney@barney.com'
     expect(page).to have_content 'Password does not match the confirmation'
   end
 
   scenario 'I cant enter empty email' do
-    expect { email_nil }.not_to change(User, :count)
+    expect { sign_up(email: nil) }.not_to change(User, :count)
     expect(current_path).to eq('/users')
     expect(page).to have_content('Email must not be blank')
   end
 
   scenario 'I cant sign up with an invalid email address' do
-    expect { invalid_email_format }.not_to change(User, :count)
+    expect { sign_up(email: 'barney@barney') }.not_to change(User, :count)
     expect(current_path).to eq('/users')
     expect(page).to have_content('Email has an invalid format')
   end

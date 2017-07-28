@@ -7,6 +7,7 @@ require 'simplecov'
 require 'simplecov-console'
 require './app/models/link'
 require 'database_cleaner'
+require_relative 'helpers/session'
 
 RSpec.configure do |config|
 
@@ -23,6 +24,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.include SessionHelpers
 end
 
 Capybara.app = BookmarkManager
